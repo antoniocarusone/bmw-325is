@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>KLAUS — Business Cards (print sheet)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#f3f2ec; --ink:#14140f; --ink-soft:#4a4a42; --line:#d7d5c9;
+    --m-blue:#1c6ec4; --m-navy:#15264f; --m-red:#e2231a;
+    --font:"Archivo","Helvetica Neue",Arial,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  /* force background colours (M-stripes, roundel) to actually print */
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{background:#9a9a93;font-family:var(--font);color:var(--ink);-webkit-font-smoothing:antialiased;}
+
+  /* on-screen helper bar (never prints) */
+  .help{max-width:7.5in;margin:24px auto;background:#fff;border:1px solid #cfcfc7;padding:18px 22px;border-radius:6px;font-size:14px;line-height:1.5;}
+  .help h1{font-size:17px;letter-spacing:.04em;margin-bottom:8px;}
+  .help code{background:#f0efe9;padding:1px 5px;border-radius:3px;font-family:var(--mono);font-size:12px;}
+  .help ul{margin:8px 0 0 18px;}
+
+  /* the printable sheet: US Letter, 10 cards (2 x 5), Avery 5371 layout */
+  .sheet{
+    width:8.5in;height:11in;margin:0 auto;background:#fff;
+    padding:0.5in 0.75in;             /* page margins */
+    display:grid;grid-template-columns:repeat(2,3.5in);grid-template-rows:repeat(5,2in);
+    justify-content:center;align-content:start;
+  }
+
+  /* ---- the card ---- */
+  .card{
+    width:3.5in;height:2in;position:relative;overflow:hidden;
+    background:var(--paper);color:var(--ink);
+    outline:0.5pt dashed #c7c5ba;      /* faint cut guide; remove via checkbox */
+    display:flex;flex-direction:column;
+  }
+  .no-guides .card{outline:none;}
+
+  .card__stripe{height:0.085in;display:flex;flex:0 0 auto;}
+  .card__stripe span{flex:1;}
+  .s-blue{background:var(--m-blue);} .s-navy{background:var(--m-navy);} .s-red{background:var(--m-red);}
+
+  .card__body{flex:1;display:flex;gap:0.14in;padding:0.17in 0.2in;}
+  .card__main{flex:1;display:flex;flex-direction:column;}
+
+  .card__brand{display:flex;align-items:center;gap:6pt;margin-bottom:2pt;}
+  .roundel{position:relative;width:15pt;height:15pt;border-radius:50%;background:conic-gradient(#fff 0 90deg, var(--m-blue) 0 180deg, #fff 0 270deg, var(--m-blue) 0 360deg);box-shadow:0 0 0 1pt var(--ink);flex:0 0 auto;}
+  .card__kicker{font-family:var(--mono);font-size:6pt;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);}
+
+  .card__headline{font-weight:900;font-stretch:112%;line-height:.92;letter-spacing:-.01em;}
+  .card__klaus{font-size:30pt;display:block;}
+  .card__sale{font-size:11.5pt;font-weight:800;letter-spacing:.02em;color:var(--m-red);text-transform:uppercase;display:block;margin-top:1pt;}
+
+  .card__spec{font-family:var(--mono);font-size:7pt;letter-spacing:.02em;color:var(--ink);margin-top:6pt;line-height:1.45;}
+  .card__spec b{color:var(--ink);font-weight:700;}
+
+  .card__foot{margin-top:auto;display:flex;flex-direction:column;gap:1.5pt;}
+  .card__url{font-family:var(--mono);font-weight:700;font-size:8pt;letter-spacing:.01em;}
+  .card__email{font-family:var(--mono);font-size:7pt;color:var(--ink-soft);letter-spacing:.01em;}
+
+  .card__qr{flex:0 0 auto;width:1.18in;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3pt;}
+  .card__qr img{width:1.12in;height:1.12in;display:block;}
+  .card__scan{font-family:var(--mono);font-size:5.5pt;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);}
+
+  @media print{
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    body{background:#fff;}
+    .help{display:none;}
+    .sheet{margin:0;box-shadow:none;}
+    @page{size:Letter;margin:0;}
+  }
+</style>
+</head>
+<body>
+
+<div class="help">
+  <h1>Klaus — business card print sheet</h1>
+  This page is one US&nbsp;Letter sheet of <strong>10 cards</strong> (standard 3.5&nbsp;×&nbsp;2&nbsp;in, Avery 5371 / 8371 layout).
+  <ul>
+    <li><strong>Print:</strong> Cmd/Ctrl&nbsp;+&nbsp;P → paper <code>Letter</code>, scale <code>100%</code>, margins <code>None</code> (or Default), turn <em>off</em> "fit to page."</li>
+    <li><strong>Paper:</strong> white cardstock (80–110&nbsp;lb cover) looks best. Perforated business-card stock cuts itself; plain cardstock cuts on the dashed guides.</li>
+    <li><strong>Before a big batch:</strong> print one, then <strong>scan the QR</strong> with your phone to confirm it opens <code>buyklaus.netlify.app</code>.</li>
+    <li><label><input type="checkbox" onchange="document.body.classList.toggle('no-guides',this.checked)"> Hide the dashed cut guides</label></li>
+  </ul>
+</div>
+
+<div class="sheet" id="sheet"></div>
+
+<!-- one card template, cloned 10x -->
+<template id="cardTpl">
+  <div class="card">
+    <div class="card__stripe"><span class="s-blue"></span><span class="s-navy"></span><span class="s-red"></span></div>
+    <div class="card__body">
+      <div class="card__main">
+        <div class="card__brand">
+          <span class="roundel"></span>
+          <span class="card__kicker">Modelljahr 1990 · Typ E30</span>
+        </div>
+        <div class="card__headline">
+          <span class="card__klaus">KLAUS</span>
+          <span class="card__sale">is for sale</span>
+        </div>
+        <p class="card__spec">1990 BMW <b>325is</b> · Alpine White<br />5-speed manual · <b>$16,000</b></p>
+        <div class="card__foot">
+          <span class="card__url">buyklaus.netlify.app</span>
+          <span class="card__email">secretdecoderring@gmail.com</span>
+        </div>
+      </div>
+      <div class="card__qr">
+        <img src="qr-klaus.svg" alt="Scan for buyklaus.netlify.app" />
+        <span class="card__scan">Scan me</span>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  const sheet = document.getElementById('sheet');
+  const tpl = document.getElementById('cardTpl');
+  for (let i = 0; i < 10; i++) sheet.appendChild(tpl.content.cloneNode(true));
+</script>
+</body>
+</html>
