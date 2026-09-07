@@ -38,7 +38,6 @@
     <span class="site-head__name">KLAUS</span>
   </a>
   <nav class="site-head__nav">
-    <a href="#gallery">Gallery</a>
     <a href="#dossier">Dossier</a>
     <a href="#specs">Specs</a>
     <a href="#service">Service</a>
@@ -74,8 +73,7 @@
         </div>
 
         <div class="hero__actions">
-          <a class="btn btn--solid" href="#gallery">View the gallery</a>
-          <a class="btn btn--ghost" href="#service">Read the service history</a>
+          <a class="btn btn--solid" href="#service">Read the service history</a>
         </div>
       </div>
 
@@ -103,23 +101,10 @@
     </ul>
   </section>
 
-  <!-- ====================== GALLERY ====================== -->
-  <section id="gallery" class="section gallery reveal">
-    <div class="section__head">
-      <p class="section__no">01</p>
-      <h2 class="section__title">The Gallery</h2>
-      <p class="section__intro">Alpine White is unforgiving — it shows everything. Klaus has nothing to hide.</p>
-    </div>
-    <div class="gallery__grid" id="galleryGrid">
-      <!-- Populated by script.js from the PHOTOS list. -->
-    </div>
-    <p class="gallery__note">Tap any frame to enlarge.</p>
-  </section>
-
   <!-- ====================== DOSSIER / STORY ====================== -->
   <section id="dossier" class="section dossier reveal">
     <div class="section__head">
-      <p class="section__no">02</p>
+      <p class="section__no">01</p>
       <h2 class="section__title">The Dossier</h2>
     </div>
     <div class="dossier__grid">
@@ -149,7 +134,7 @@
   <!-- ====================== SPECIFICATIONS ====================== -->
   <section id="specs" class="section specs reveal">
     <div class="section__head">
-      <p class="section__no">03</p>
+      <p class="section__no">02</p>
       <h2 class="section__title">Specifications</h2>
     </div>
     <div class="specs__grid">
@@ -182,7 +167,7 @@
   -->
   <section id="service" class="section service reveal">
     <div class="section__head">
-      <p class="section__no">04</p>
+      <p class="section__no">03</p>
       <h2 class="section__title">Service History</h2>
       <p class="section__intro">Extensive records, kept with receipts. A representative log is below.</p>
     </div>
@@ -357,7 +342,7 @@
   <!-- ====================== KNOWN ISSUES ====================== -->
   <section id="disclosure" class="section disclosure reveal">
     <div class="section__head">
-      <p class="section__no">05</p>
+      <p class="section__no">04</p>
       <h2 class="section__title">Known Issues</h2>
       <p class="section__intro">Everything currently not working, plus the cosmetic imperfections worth noting.</p>
     </div>
@@ -400,15 +385,6 @@
     <a class="site-foot__top" href="#top">↑ Back to top</a>
   </div>
 </footer>
-
-<!-- ====================== LIGHTBOX ====================== -->
-<div class="lightbox" id="lightbox" aria-hidden="true">
-  <button class="lightbox__close" id="lbClose" aria-label="Close">✕</button>
-  <button class="lightbox__nav lightbox__nav--prev" id="lbPrev" aria-label="Previous">‹</button>
-  <img class="lightbox__img" id="lbImg" src="" alt="" />
-  <button class="lightbox__nav lightbox__nav--next" id="lbNext" aria-label="Next">›</button>
-  <div class="lightbox__count" id="lbCount"></div>
-</div>
 
 <script src="script.js"></script>
 </body>

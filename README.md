@@ -5,20 +5,19 @@ A single static site documenting Klaus: history, specifications, service log and
 ## Files
 - `index.html` — all the content (copy lives here)
 - `styles.css` — the BMW Motorsport / Neue Grafik styling
-- `script.js` — gallery, lightbox, animations, and the **photo list**
-- `images/` — drop your photos here
+- `script.js` — scroll reveals and the odometer animation
+- `images/` — the hero photo, plus the archive of car photos
 
-## 1. Add your photos
-1. Put your image files in the `images/` folder.
-2. Open `script.js` and edit the `PHOTOS` array near the top — set each
-   `src` to your filename and write a short `alt` description.
-   - `span` controls tile size: `"hero"`, `"wide"`, `"tall"`, or `""` (normal).
-3. The hero image at the top of the page is `images/klaus-hero.jpg`
-   (set in `index.html`). Name your best front-3/4 shot that, or change the
-   filename in `index.html`.
+## 1. The hero photo
+The one image the page displays is `images/klaus-hero.jpg`, set in
+`index.html`. Swap the file (or change the filename in `index.html`) to
+change it.
 
-> Any image that isn't found shows a tasteful striped placeholder with the
-> filename it's looking for — so nothing ever looks broken while you work.
+> If the image isn't found, it shows a striped placeholder naming the file
+> it's looking for — so nothing ever looks broken while you work.
+
+The rest of `images/` is no longer displayed on the page; the photo gallery
+was removed. The files are kept as an archive.
 
 ## 2. Add service records
 Open `index.html`, find the **Service History** section. There's a
