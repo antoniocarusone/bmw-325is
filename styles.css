@@ -230,7 +230,7 @@ a { color: inherit; text-decoration: none; }
   list-style: none; display: grid;
   /* minmax(0,…) not 1fr: a 1fr track cannot shrink below its min-content, which
      pushed this row into horizontal overflow at narrow widths. */
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   max-width: var(--maxw); margin-inline: auto;
   padding-inline: var(--pad);
   column-gap: 0;
@@ -241,10 +241,8 @@ a { color: inherit; text-decoration: none; }
 }
 /* Outer edges stay clean: no rule on the left of the first column, none on the
    right of the last, none above the first row. */
-.vitals__list li:nth-child(3n) { border-right: 0; }
-/* A partial last row would otherwise leave a rule hanging into empty space. */
-.vitals__list li:last-child { border-right: 0; }
-.vitals__list li:nth-child(-n + 3) { border-top: 0; }
+.vitals__list li:nth-child(4n) { border-right: 0; }
+.vitals__list li:nth-child(-n + 4) { border-top: 0; }
 .maint__k {
   font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase;
   letter-spacing: 0.12em; color: #8d8d84; line-height: 1.4;
@@ -262,12 +260,14 @@ a { color: inherit; text-decoration: none; }
 .maint--soon     .maint__status { color: #e8a317; }
 .maint--ok       .maint__status { color: #5bbd7c; }
 .maint--unknown  .maint__status { color: #8d8d84; }
-@media (max-width: 720px) {
+/* Eight items divide evenly at four, two and one across, so no row is ever
+   left partial and the block always closes square. */
+@media (max-width: 860px) {
   .vitals__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .vitals__filler { display: none; }
-  .vitals__list li:nth-child(3n) { border-right: 1px solid #2c2c26; }
+  .vitals__list li:nth-child(4n) { border-right: 1px solid #2c2c26; }
   .vitals__list li:nth-child(2n) { border-right: 0; }
-  .vitals__list li:nth-child(3) { border-top: 1px solid #2c2c26; }
+  .vitals__list li:nth-child(-n + 4) { border-top: 1px solid #2c2c26; }
+  .vitals__list li:nth-child(-n + 2) { border-top: 0; }
 }
 @media (max-width: 460px) {
   .vitals__list { grid-template-columns: minmax(0, 1fr); }
