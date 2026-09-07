@@ -89,9 +89,19 @@ document.querySelectorAll(".maint").forEach((el) => {
   else if (worst.frac <= 0.1){ state = "soon";    label = "Due soon"; detail = worst.soon; }
   else                       { state = "ok";      label = worst.ahead; detail = null; }
 
+  /* An item can have a limit that is not actually being measured — a time interval
+     with no known date, say. Say so rather than showing a confident status that
+     only covers half the rule. */
+  const unchecked = [
+    d.everyMi && !d.lastMi ? "mileage" : null,
+    d.everyMonths && !d.lastOn ? "date" : null,
+  ].filter(Boolean);
+
   el.classList.add("maint--" + state);
   slot.textContent = label;
-  sub.textContent = sub.textContent + " · every " + every + (detail ? " · " + detail : "");
+  sub.textContent = sub.textContent + " · every " + every
+    + (detail ? " · " + detail : "")
+    + (unchecked.length ? " · " + unchecked.join(" & ") + " unknown" : "");
 });
 
 /* ---------- animated odometer on load ---------- */
