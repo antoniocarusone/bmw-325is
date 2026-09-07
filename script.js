@@ -132,7 +132,7 @@ if (revealBtn) {
     const domain = revealBtn.dataset.domain;
     const addr = user + "@" + domain;
     const subject = encodeURIComponent("Klaus — 1990 BMW 325is");
-    const body = encodeURIComponent("Hi, I'm interested in Klaus. ");
+    const body = encodeURIComponent("Hi, I have a question about Klaus. ");
     const a = document.createElement("a");
     a.className = "contact__email";
     a.href = `mailto:${addr}?subject=${subject}&body=${body}`;

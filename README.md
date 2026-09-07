@@ -1,6 +1,6 @@
-# KLAUS — 1990 BMW E30 325is listing site
+# KLAUS — 1990 BMW E30 325is
 
-A single static site to sell Klaus. No build step, no dependencies — just open `index.html`.
+A single static site documenting Klaus: history, specifications, service log and known issues. No build step, no dependencies — just open `index.html`.
 
 ## Files
 - `index.html` — all the content (copy lives here)
@@ -27,19 +27,21 @@ copy-paste template in an HTML comment right above the list. Duplicate one
 detail. `data-mileage` is optional and shows on the right.
 
 ## 3. Edit any text
-All copy is plain text in `index.html` — price, contact email, location,
-disclosures, the story. Search for what you want to change.
+All copy is plain text in `index.html` — contact email, location,
+known issues, the story. Search for what you want to change.
 
-## 4. Publish (free options)
-Pick one:
+## 4. Publish
+This site is hosted free on **GitHub Pages** at
+<https://antoniocarusone.github.io/bmw-325is/>, served from the `main`
+branch, root directory.
 
-- **Netlify Drop** — go to https://app.netlify.com/drop and drag this whole
-  folder in. Instant URL.
-- **GitHub Pages** — create a repo, upload these files, enable Pages in
-  Settings → Pages (deploy from `main`, root).
-- **Vercel** — `vercel` CLI, or import the repo at vercel.com.
+To publish an update:
 
-All three are free for a static site like this.
+```sh
+git add -A && git commit -m "Update" && git push
+```
+
+The live site rebuilds about a minute after the push.
 
 ## Tips
 - Keep photos under ~500 KB each (resize to ~2000px wide) so the page loads fast.
