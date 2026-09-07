@@ -19,8 +19,8 @@
   --maxw: 1240px;
   --pad:  clamp(20px, 5vw, 64px);
 
-  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
-  --font-cond:    "Archivo Narrow", "Archivo", sans-serif;
+  --font-display: "Helvetica Neue", Arial, sans-serif;
+  --font-cond:    "Archivo Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, monospace;
 }
 
