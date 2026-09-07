@@ -25,53 +25,73 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
    ============================================================ */
 const ODOMETER = 200800;
 
-/* ---------- maintenance tracker ---------- */
+/* ---------- maintenance tracker ----------
+   Every item can carry a mileage limit and a time limit. BMW quotes these as
+   "whichever comes first", so both are measured and the more urgent one is shown.
+   Urgency is compared as the fraction of the interval still left, which puts
+   miles and months on one scale. */
 const fmt = (n) => n.toLocaleString("en-US");
 
-function milesStatus(lastMi, everyMi) {
-  const remaining = lastMi + everyMi - ODOMETER;
-  if (remaining < 0) return { state: "overdue", label: "Overdue", sub: fmt(-remaining) + " mi past" };
-  if (remaining <= everyMi * 0.1) return { state: "soon", label: "Due soon", sub: "in " + fmt(remaining) + " mi" };
-  return { state: "ok", label: "In " + fmt(remaining) + " mi", sub: "due at " + fmt(lastMi + everyMi) };
+function byMiles(lastMi, everyMi) {
+  const left = lastMi + everyMi - ODOMETER;
+  return {
+    frac: left / everyMi,
+    over: left < 0,
+    past: fmt(-left) + " mi past",
+    ahead: "In " + fmt(left) + " mi",
+    soon: "in " + fmt(left) + " mi",
+  };
 }
 
-function monthsStatus(lastOn, everyMonths) {
-  const due = new Date(lastOn);
+function byMonths(lastOn, everyMonths) {
+  const due = new Date(lastOn + "T00:00:00");
   due.setMonth(due.getMonth() + everyMonths);
   const days = Math.round((due - new Date()) / 86400000);
-  if (days < 0) {
-    const yrs = Math.floor(-days / 365);
-    return { state: "overdue", label: "Overdue", sub: yrs >= 1 ? yrs + (yrs === 1 ? " year" : " years") + " past" : -days + " days past" };
-  }
-  if (days <= 60) return { state: "soon", label: "Due soon", sub: "in " + days + " days" };
-  return { state: "ok", label: "In " + Math.round(days / 30) + " mo", sub: "due " + due.getFullYear() };
+  const years = Math.floor(-days / 365);
+  const months = Math.round(-days / 30);
+  return {
+    frac: days / (everyMonths * 30.44),
+    over: days < 0,
+    past: years >= 1 ? years + (years === 1 ? " yr past" : " yrs past")
+                     : months + " mo past",
+    ahead: "In " + Math.round(days / 30) + " mo",
+    soon: "in " + days + " days",
+  };
 }
 
 document.querySelectorAll(".maint").forEach((el) => {
   const d = el.dataset;
-  const slot = el.querySelector(".maint__status");
+  const limits = [];
+  if (d.lastMi && d.everyMi) limits.push(byMiles(+d.lastMi, +d.everyMi));
+  if (d.lastOn && d.everyMonths) limits.push(byMonths(d.lastOn, +d.everyMonths));
+
+  /* Spell out the interval either way, so an item with no history still says
+     what it will be measured against once a date goes in. */
+  const every = [
+    d.everyMi ? fmt(+d.everyMi) + " mi" : null,
+    d.everyMonths ? (d.everyMonths % 12 ? d.everyMonths + " mo" : d.everyMonths / 12 + " yr") : null,
+  ].filter(Boolean).join(" / ");
+
   const sub = el.querySelector(".maint__sub");
-  let r;
+  const slot = el.querySelector(".maint__status");
 
-  if (d.lastMi && d.everyMi) {
-    r = milesStatus(+d.lastMi, +d.everyMi);
-  } else if (d.lastOn && d.everyMonths) {
-    r = monthsStatus(d.lastOn, +d.everyMonths);
-  } else {
-    r = { state: "unknown", label: "No record", sub: null };
+  if (!limits.length) {
+    el.classList.add("maint--unknown");
+    slot.textContent = "No record";
+    sub.textContent = sub.textContent + " · every " + every;
+    return;
   }
 
-  el.classList.add("maint--" + r.state);
-  slot.textContent = r.label;
+  /* Lowest fraction remaining is the binding limit. */
+  const worst = limits.reduce((a, b) => (b.frac < a.frac ? b : a));
+  let state, label, detail;
+  if (worst.over)            { state = "overdue"; label = "Overdue";  detail = worst.past; }
+  else if (worst.frac <= 0.1){ state = "soon";    label = "Due soon"; detail = worst.soon; }
+  else                       { state = "ok";      label = worst.ahead; detail = null; }
 
-  /* Keep the authored "last done" line and append what the status is measured
-     against, so the tile still reads correctly with JavaScript switched off. */
-  if (r.sub) {
-    const every = d.everyMi ? fmt(+d.everyMi) + " mi" : d.everyMonths / 12 + " yr";
-    sub.textContent = sub.textContent + " · every " + every + " · " + r.sub;
-  } else if (d.everyMonths) {
-    sub.textContent = sub.textContent + " · every " + d.everyMonths / 12 + " yr";
-  }
+  el.classList.add("maint--" + state);
+  slot.textContent = label;
+  sub.textContent = sub.textContent + " · every " + every + (detail ? " · " + detail : "");
 });
 
 /* ---------- animated odometer on load ---------- */

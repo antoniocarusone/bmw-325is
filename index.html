@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=10" />
+<link rel="stylesheet" href="styles.css?v=11" />
 </head>
 <body>
 
@@ -89,44 +89,51 @@
 
   <!-- ====================== VITALS TICKER ====================== -->
   <!-- Maintenance tracker.
-       Each <li> carries its own facts; script.js reads them and works out the status
-       against ODOMETER. To log a service, edit that item's data-last-* attributes.
-       data-every-mi = mileage interval, data-every-months = time interval.
-       An item with neither a data-last-mi nor a data-last-on reads "No record". -->
+       Intervals are BMW's own figures, padded ~17% on mileage for margin. BMW's
+       "Inspection II" means 30,000 mi / 24 months, so those items read 25,000 / 24.
+       Whichever limit falls first wins; script.js works that out against ODOMETER
+       and today's date, and shows the more urgent of the two.
+       To log a service, edit that item's data-last-mi / data-last-on. An item with
+       neither reads "No record". -->
   <section class="vitals" aria-label="Maintenance tracker">
     <div class="vitals__head">
       <p class="vitals__title">Maintenance</p>
       <p class="vitals__odo">Odometer <strong>200,800</strong> mi</p>
     </div>
     <ul class="vitals__list">
-      <li class="maint" data-last-mi="193772" data-last-on="2021-11-29" data-every-mi="5000">
-        <span class="maint__k">Engine oil &amp; filter</span>
-        <span class="maint__status">—</span>
-        <span class="maint__sub">193,772 mi · Nov 2021</span>
+      <li class="maint" data-last-mi="193772" data-last-on="2021-11-29" data-every-mi="6000" data-every-months="6">
+        <span class="maint__k">Engine oil</span>
+        <span class="maint__status">&mdash;</span>
+        <span class="maint__sub">193,772 mi &middot; Nov 2021</span>
       </li>
-      <li class="maint" data-last-mi="195514" data-every-mi="60000">
-        <span class="maint__k">Timing belt &amp; pump</span>
-        <span class="maint__status">—</span>
-        <span class="maint__sub">195,514 mi · with the rebuild</span>
+      <li class="maint" data-last-mi="195514" data-every-mi="50000" data-every-months="48">
+        <span class="maint__k">Timing belt</span>
+        <span class="maint__status">&mdash;</span>
+        <span class="maint__sub">195,514 mi &middot; with the rebuild</span>
       </li>
-      <li class="maint" data-last-mi="184457" data-last-on="2019-08-30" data-every-mi="60000">
-        <span class="maint__k">Transmission fluid</span>
-        <span class="maint__status">—</span>
-        <span class="maint__sub">184,457 mi · Aug 2019</span>
+      <li class="maint" data-last-mi="184457" data-last-on="2019-08-30" data-every-mi="25000" data-every-months="24">
+        <span class="maint__k">Transmission oil</span>
+        <span class="maint__status">&mdash;</span>
+        <span class="maint__sub">184,457 mi &middot; Aug 2019</span>
       </li>
-      <li class="maint" data-last-on="2016-05-15" data-last-approx="1" data-every-months="36">
+      <li class="maint" data-last-on="2016-05-15" data-every-mi="25000" data-every-months="24">
         <span class="maint__k">Air filter</span>
-        <span class="maint__status">—</span>
-        <span class="maint__sub">May 2016 · approx.</span>
+        <span class="maint__status">&mdash;</span>
+        <span class="maint__sub">May 2016 &middot; approx.</span>
       </li>
-      <li class="maint" data-every-months="24">
-        <span class="maint__k">Brake fluid</span>
-        <span class="maint__status">—</span>
+      <li class="maint" data-every-mi="25000" data-every-months="24">
+        <span class="maint__k">Final drive oil</span>
+        <span class="maint__status">&mdash;</span>
         <span class="maint__sub">No record</span>
       </li>
-      <li class="maint" data-every-months="36">
+      <li class="maint" data-every-months="12">
+        <span class="maint__k">Brake fluid</span>
+        <span class="maint__status">&mdash;</span>
+        <span class="maint__sub">No record</span>
+      </li>
+      <li class="maint" data-every-months="24">
         <span class="maint__k">Coolant</span>
-        <span class="maint__status">—</span>
+        <span class="maint__status">&mdash;</span>
         <span class="maint__sub">No record</span>
       </li>
     </ul>
@@ -493,6 +500,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=2"></script>
+<script src="script.js?v=3"></script>
 </body>
 </html>
