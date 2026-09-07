@@ -264,6 +264,7 @@ a { color: inherit; text-decoration: none; }
 .maint--unknown  .maint__status { color: #8d8d84; }
 @media (max-width: 720px) {
   .vitals__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vitals__filler { display: none; }
   .vitals__list li:nth-child(3n) { border-right: 1px solid #2c2c26; }
   .vitals__list li:nth-child(2n) { border-right: 0; }
   .vitals__list li:nth-child(3) { border-top: 1px solid #2c2c26; }

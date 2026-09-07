@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=14" />
+<link rel="stylesheet" href="styles.css?v=15" />
 </head>
 <body>
 
@@ -146,6 +146,11 @@
         <span class="maint__status">&mdash;</span>
         <span class="maint__sub">Never changed on record</span>
       </li>
+      <!-- Eight items in a three-wide grid leave the last cell empty; this filler
+           carries the rules so the block closes off squarely. Deliberately not
+           .maint — script.js would try to give it a status. Hidden once the grid
+           drops to two columns, where eight items divide evenly. -->
+      <li class="vitals__filler" aria-hidden="true"></li>
     </ul>
   </section>
 
