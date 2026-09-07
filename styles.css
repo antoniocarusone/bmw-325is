@@ -218,7 +218,7 @@ a { color: inherit; text-decoration: none; }
 .vitals { border-block: 1px solid var(--ink); background: var(--ink); color: var(--paper); }
 .vitals__head {
   max-width: var(--maxw); margin-inline: auto;
-  padding: 14px var(--pad) 0; display: flex; gap: 16px;
+  padding: 16px var(--pad) 10px; display: flex; gap: 16px;
   align-items: baseline; justify-content: space-between; flex-wrap: wrap;
 }
 .vitals__title, .vitals__odo {
@@ -227,39 +227,50 @@ a { color: inherit; text-decoration: none; }
 }
 .vitals__odo strong { color: var(--paper); font-weight: 500; }
 .vitals__list {
-  list-style: none; display: grid; /* minmax(0,…) not 1fr: a 1fr track cannot shrink below its min-content, and the
-     first tile's var(--pad) left padding pushed the row into horizontal overflow. */
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  list-style: none; display: grid;
+  /* minmax(0,…) not 1fr: a 1fr track cannot shrink below its min-content, which
+     pushed this row into horizontal overflow at narrow widths. */
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   max-width: var(--maxw); margin-inline: auto;
+  padding-inline: var(--pad);
+  column-gap: 0;
 }
 .vitals__list li {
-  padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 4px;
-  border-right: 1px solid #2c2c26;
+  padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 5px;
+  border-top: 1px solid #2c2c26; border-right: 1px solid #2c2c26;
 }
-@media (max-width: 520px) { .maint__k { min-height: 0; } }
-.vitals__list li:first-child { padding-left: var(--pad); }
+/* Outer edges stay clean: no rule on the left of the first column, none on the
+   right of the last, none above the first row. */
+.vitals__list li:nth-child(3n) { border-right: 0; }
+.vitals__list li:nth-child(-n + 3) { border-top: 0; }
 .maint__k {
-  font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase;
-  letter-spacing: 0.1em; color: #8d8d84; line-height: 1.4;
-  /* Two-line floor so a name that wraps does not push its status out of line
-     with the neighbouring tiles. */
-  min-height: 2.8em;
+  font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase;
+  letter-spacing: 0.12em; color: #8d8d84; line-height: 1.4;
 }
 .maint__status {
-  font-family: var(--font-cond); font-weight: 600; font-size: 1.05rem;
+  font-family: var(--font-cond); font-weight: 600; font-size: 1.35rem;
   line-height: 1.15; color: var(--paper);
 }
 .maint__sub {
-  font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.04em;
-  color: #6f6f68; line-height: 1.4;
+  font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.04em;
+  color: #6f6f68; line-height: 1.5;
 }
 /* Status colours, picked to hold up on the near-black band. */
 .maint--overdue  .maint__status { color: #ff5147; }
 .maint--soon     .maint__status { color: #e8a317; }
 .maint--ok       .maint__status { color: #5bbd7c; }
 .maint--unknown  .maint__status { color: #8d8d84; }
-@media (max-width: 900px) { .vitals__list { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .vitals__list { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 720px) {
+  .vitals__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .vitals__list li:nth-child(3n) { border-right: 1px solid #2c2c26; }
+  .vitals__list li:nth-child(2n) { border-right: 0; }
+  .vitals__list li:nth-child(3) { border-top: 1px solid #2c2c26; }
+}
+@media (max-width: 460px) {
+  .vitals__list { grid-template-columns: minmax(0, 1fr); }
+  .vitals__list li { border-right: 0 !important; }
+  .vitals__list li:not(:first-child) { border-top: 1px solid #2c2c26; }
+}
 
 /* ---------- Section scaffold ---------- */
 .section { max-width: var(--maxw); margin-inline: auto; padding: clamp(56px, 9vw, 120px) var(--pad); }
