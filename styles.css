@@ -218,7 +218,7 @@ a { color: inherit; text-decoration: none; }
   max-width: var(--maxw); margin-inline: auto;
 }
 .vitals__list li {
-  padding: 16px var(--pad); display: flex; flex-direction: column; gap: 3px;
+  padding: 16px 16px; display: flex; flex-direction: column; gap: 3px;
   border-right: 1px solid #2c2c26;
 }
 .vitals__list li:first-child { padding-left: var(--pad); }
@@ -227,8 +227,7 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.14em; color: #8d8d84;
 }
 .vitals__v { font-family: var(--font-cond); font-weight: 600; font-size: 0.95rem; }
-@media (max-width: 900px) { .vitals__list { grid-template-columns: repeat(4, 1fr); }
-  .vitals__list li { padding-inline: 16px; } }
+@media (max-width: 900px) { .vitals__list { grid-template-columns: repeat(4, 1fr); } }
 @media (max-width: 520px) { .vitals__list { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------- Section scaffold ---------- */
