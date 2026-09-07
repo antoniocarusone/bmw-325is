@@ -22,7 +22,7 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 /* ---------- animated odometer on load ---------- */
 const odo = document.querySelector(".odo");
 if (odo && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const target = 200500;
+  const target = 200800;
   const dur = 1100;
   const start = performance.now();
   function tick(now) {
@@ -31,7 +31,7 @@ if (odo && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     const val = Math.round(eased * target);
     odo.textContent = val.toLocaleString("en-US");
     if (t < 1) requestAnimationFrame(tick);
-    else odo.textContent = "200,500";
+    else odo.textContent = "200,800";
   }
   requestAnimationFrame(tick);
 }

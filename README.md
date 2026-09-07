@@ -47,6 +47,10 @@ The live site rebuilds about a minute after the push.
 serves CSS with `cache-control: max-age=600`, so without this your browser
 can keep using the old stylesheet for 10 minutes after a push.
 
+`script.js` carries the same `?v=N` buster, for the same reason. Bump it on
+any JS change — the odometer animation writes the mileage into the hero on
+load, so a stale script paints the old number over the correct one.
+
 **Search engines:** `index.html` carries a `noindex, nofollow` meta tag, so the
 page stays out of Google and other search results. Don't add a `robots.txt` to
 block crawling — this is a *project* page, so `robots.txt` would have to live at
