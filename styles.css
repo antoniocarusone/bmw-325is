@@ -242,6 +242,8 @@ a { color: inherit; text-decoration: none; }
 /* Outer edges stay clean: no rule on the left of the first column, none on the
    right of the last, none above the first row. */
 .vitals__list li:nth-child(3n) { border-right: 0; }
+/* A partial last row would otherwise leave a rule hanging into empty space. */
+.vitals__list li:last-child { border-right: 0; }
 .vitals__list li:nth-child(-n + 3) { border-top: 0; }
 .maint__k {
   font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase;
