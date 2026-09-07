@@ -216,21 +216,43 @@ a { color: inherit; text-decoration: none; }
 
 /* ---------- Vitals ticker ---------- */
 .vitals { border-block: 1px solid var(--ink); background: var(--ink); color: var(--paper); }
-.vitals__list {
-  list-style: none; display: grid; grid-template-columns: repeat(8, 1fr);
+.vitals__head {
   max-width: var(--maxw); margin-inline: auto;
+  padding: 14px var(--pad) 0; display: flex; gap: 16px;
+  align-items: baseline; justify-content: space-between; flex-wrap: wrap;
 }
-.vitals__list li {
-  padding: 16px 16px; display: flex; flex-direction: column; gap: 3px;
-  border-right: 1px solid #2c2c26;
-}
-.vitals__list li:first-child { padding-left: var(--pad); }
-.vitals__k {
+.vitals__title, .vitals__odo {
   font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase;
   letter-spacing: 0.14em; color: #8d8d84;
 }
-.vitals__v { font-family: var(--font-cond); font-weight: 600; font-size: 0.95rem; }
-@media (max-width: 900px) { .vitals__list { grid-template-columns: repeat(4, 1fr); } }
+.vitals__odo strong { color: var(--paper); font-weight: 500; }
+.vitals__list {
+  list-style: none; display: grid; grid-template-columns: repeat(6, 1fr);
+  max-width: var(--maxw); margin-inline: auto;
+}
+.vitals__list li {
+  padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 4px;
+  border-right: 1px solid #2c2c26;
+}
+.vitals__list li:first-child { padding-left: var(--pad); }
+.maint__k {
+  font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase;
+  letter-spacing: 0.14em; color: #8d8d84;
+}
+.maint__status {
+  font-family: var(--font-cond); font-weight: 600; font-size: 1.05rem;
+  line-height: 1.15; color: var(--paper);
+}
+.maint__sub {
+  font-family: var(--font-mono); font-size: 0.58rem; letter-spacing: 0.04em;
+  color: #6f6f68; line-height: 1.4;
+}
+/* Status colours, picked to hold up on the near-black band. */
+.maint--overdue  .maint__status { color: #ff5147; }
+.maint--soon     .maint__status { color: #e8a317; }
+.maint--ok       .maint__status { color: #5bbd7c; }
+.maint--unknown  .maint__status { color: #8d8d84; }
+@media (max-width: 900px) { .vitals__list { grid-template-columns: repeat(3, 1fr); } }
 @media (max-width: 520px) { .vitals__list { grid-template-columns: repeat(2, 1fr); } }
 
 /* ---------- Section scaffold ---------- */

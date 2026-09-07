@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=8" />
+<link rel="stylesheet" href="styles.css?v=9" />
 </head>
 <body>
 
@@ -88,16 +88,47 @@
   </section>
 
   <!-- ====================== VITALS TICKER ====================== -->
-  <section class="vitals" aria-label="Quick vitals">
+  <!-- Maintenance tracker.
+       Each <li> carries its own facts; script.js reads them and works out the status
+       against ODOMETER. To log a service, edit that item's data-last-* attributes.
+       data-every-mi = mileage interval, data-every-months = time interval.
+       An item with neither a data-last-mi nor a data-last-on reads "No record". -->
+  <section class="vitals" aria-label="Maintenance tracker">
+    <div class="vitals__head">
+      <p class="vitals__title">Maintenance</p>
+      <p class="vitals__odo">Odometer <strong>200,800</strong> mi</p>
+    </div>
     <ul class="vitals__list">
-      <li><span class="vitals__k">Year</span><span class="vitals__v">1990</span></li>
-      <li><span class="vitals__k">Model</span><span class="vitals__v">325is (E30)</span></li>
-      <li><span class="vitals__k">Engine</span><span class="vitals__v">M20B25 · 2.5 I6</span></li>
-      <li><span class="vitals__k">Trans</span><span class="vitals__v">Getrag 5-spd</span></li>
-      <li><span class="vitals__k">Exterior</span><span class="vitals__v">Alpine White</span></li>
-      <li><span class="vitals__k">Interior</span><span class="vitals__v">Black Leather</span></li>
-      <li><span class="vitals__k">Title</span><span class="vitals__v">Clean</span></li>
-      <li><span class="vitals__k">Origin</span><span class="vitals__v">Virginia → New England</span></li>
+      <li class="maint" data-last-mi="193772" data-last-on="2021-11-29" data-every-mi="5000">
+        <span class="maint__k">Engine oil &amp; filter</span>
+        <span class="maint__status">—</span>
+        <span class="maint__sub">193,772 mi · Nov 2021</span>
+      </li>
+      <li class="maint" data-last-mi="195514" data-every-mi="60000">
+        <span class="maint__k">Timing belt &amp; pump</span>
+        <span class="maint__status">—</span>
+        <span class="maint__sub">195,514 mi · with the rebuild</span>
+      </li>
+      <li class="maint" data-last-mi="184457" data-last-on="2019-08-30" data-every-mi="60000">
+        <span class="maint__k">Transmission fluid</span>
+        <span class="maint__status">—</span>
+        <span class="maint__sub">184,457 mi · Aug 2019</span>
+      </li>
+      <li class="maint" data-last-on="2016-05-15" data-last-approx="1" data-every-months="36">
+        <span class="maint__k">Air filter</span>
+        <span class="maint__status">—</span>
+        <span class="maint__sub">May 2016 · approx.</span>
+      </li>
+      <li class="maint" data-every-months="24">
+        <span class="maint__k">Brake fluid</span>
+        <span class="maint__status">—</span>
+        <span class="maint__sub">No record</span>
+      </li>
+      <li class="maint" data-every-months="36">
+        <span class="maint__k">Coolant</span>
+        <span class="maint__status">—</span>
+        <span class="maint__sub">No record</span>
+      </li>
     </ul>
   </section>
 
@@ -462,6 +493,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=1"></script>
+<script src="script.js?v=2"></script>
 </body>
 </html>
