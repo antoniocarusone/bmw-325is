@@ -2,9 +2,6 @@
    DIETER — interactions
    ============================================================ */
 
-/* Never restore the previous scroll position on reload — open at the top. */
-history.scrollRestoration = "manual";
-
 /* ---------- graceful fallback for any missing image ---------- */
 window.__photoFallback = function (img) {
   const fig = img.closest(".photo, .hero__photo");
