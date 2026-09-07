@@ -1,6 +1,6 @@
-# KLAUS — 1990 BMW E30 325is
+# DIETER — 1990 BMW E30 325is
 
-A single static site documenting Klaus: history, specifications, service log and known issues. No build step, no dependencies — just open `index.html`.
+A single static site documenting Dieter: history, specifications, service log and known issues. No build step, no dependencies — just open `index.html`.
 
 ## Files
 - `index.html` — all the content (copy lives here)
