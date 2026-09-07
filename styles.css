@@ -234,10 +234,14 @@ a { color: inherit; text-decoration: none; }
   padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 4px;
   border-right: 1px solid #2c2c26;
 }
+@media (max-width: 520px) { .maint__k { min-height: 0; } }
 .vitals__list li:first-child { padding-left: var(--pad); }
 .maint__k {
   font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase;
-  letter-spacing: 0.14em; color: #8d8d84;
+  letter-spacing: 0.14em; color: #8d8d84; line-height: 1.4;
+  /* Two-line floor so a name that wraps does not push its status out of line
+     with the neighbouring tiles. */
+  min-height: 2.8em;
 }
 .maint__status {
   font-family: var(--font-cond); font-weight: 600; font-size: 1.05rem;
