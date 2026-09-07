@@ -21,6 +21,16 @@
   /* status colour, outside the Motorsport palette — Known Issues badges only */
   --status-done: #1c8f4c;
 
+  /* Panel palette — the maintenance tracker, the At a glance card and the Known
+     Issues cards all share it. Deliberately literal, NOT the --paper/--ink pair:
+     these panels sit a shade below the page (which carries a grain overlay they
+     paint over) and must not flip if the page theme ever does. */
+  --panel:       #14140f;
+  --panel-line:  #2c2c26;
+  --panel-ink:   #f3f2ec;
+  --panel-soft:  #8d8d84;
+  --panel-faint: #6f6f68;
+
   /* Specifications and Service History / Modifications are both two equal
      columns on this gutter, so their column edges line up down the page. */
   --col-gap: clamp(28px, 5vw, 60px);
@@ -227,7 +237,7 @@ a { color: inherit; text-decoration: none; }
 /* ---------- Vitals ticker ---------- */
 /* Pinned to literal darks rather than the theme pair: the tracker keeps the
    band it has always had while the rest of the page inverts around it. */
-.vitals { border-block: 1px solid #2c2c26; background: #14140f; color: #f3f2ec; }
+.vitals { border-block: 1px solid var(--panel-line); background: var(--panel); color: var(--panel-ink); }
 .vitals__head {
   max-width: var(--maxw); margin-inline: auto;
   padding: 16px var(--pad) 10px; display: flex; gap: 16px;
@@ -235,9 +245,9 @@ a { color: inherit; text-decoration: none; }
 }
 .vitals__title, .vitals__odo {
   font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase;
-  letter-spacing: 0.14em; color: #8d8d84;
+  letter-spacing: 0.14em; color: var(--panel-soft);
 }
-.vitals__odo strong { color: #f3f2ec; font-weight: 500; }
+.vitals__odo strong { color: var(--panel-ink); font-weight: 500; }
 .vitals__list {
   list-style: none; display: grid;
   /* minmax(0,…) not 1fr: a 1fr track cannot shrink below its min-content, which
@@ -249,7 +259,7 @@ a { color: inherit; text-decoration: none; }
 }
 .vitals__list li {
   padding: 16px 20px 18px; display: flex; flex-direction: column; gap: 5px;
-  border-top: 1px solid #2c2c26; border-right: 1px solid #2c2c26;
+  border-top: 1px solid var(--panel-line); border-right: 1px solid var(--panel-line);
 }
 /* Outer edges stay clean: no rule on the left of the first column, none on the
    right of the last, none above the first row. */
@@ -257,34 +267,34 @@ a { color: inherit; text-decoration: none; }
 .vitals__list li:nth-child(-n + 4) { border-top: 0; }
 .maint__k {
   font-family: var(--font-mono); font-size: 0.62rem; text-transform: uppercase;
-  letter-spacing: 0.12em; color: #8d8d84; line-height: 1.4;
+  letter-spacing: 0.12em; color: var(--panel-soft); line-height: 1.4;
 }
 .maint__status {
   font-family: var(--font-cond); font-weight: 600; font-size: 1.35rem;
-  line-height: 1.15; color: #f3f2ec;
+  line-height: 1.15; color: var(--panel-ink);
 }
 .maint__sub {
   font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.04em;
-  color: #6f6f68; line-height: 1.5;
+  color: var(--panel-faint); line-height: 1.5;
 }
 /* Status colours, picked to hold up on the near-black band. */
 .maint--overdue  .maint__status { color: #ff5147; }
 .maint--soon     .maint__status { color: #e8a317; }
 .maint--ok       .maint__status { color: #5bbd7c; }
-.maint--unknown  .maint__status { color: #8d8d84; }
+.maint--unknown  .maint__status { color: var(--panel-soft); }
 /* Eight items divide evenly at four, two and one across, so no row is ever
    left partial and the block always closes square. */
 @media (max-width: 860px) {
   .vitals__list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .vitals__list li:nth-child(4n) { border-right: 1px solid #2c2c26; }
+  .vitals__list li:nth-child(4n) { border-right: 1px solid var(--panel-line); }
   .vitals__list li:nth-child(2n) { border-right: 0; }
-  .vitals__list li:nth-child(-n + 4) { border-top: 1px solid #2c2c26; }
+  .vitals__list li:nth-child(-n + 4) { border-top: 1px solid var(--panel-line); }
   .vitals__list li:nth-child(-n + 2) { border-top: 0; }
 }
 @media (max-width: 460px) {
   .vitals__list { grid-template-columns: minmax(0, 1fr); }
   .vitals__list li { border-right: 0 !important; }
-  .vitals__list li:not(:first-child) { border-top: 1px solid #2c2c26; }
+  .vitals__list li:not(:first-child) { border-top: 1px solid var(--panel-line); }
 }
 
 /* ---------- Section scaffold ---------- */
@@ -322,12 +332,13 @@ a { color: inherit; text-decoration: none; }
   border-top: 1px solid var(--line); padding-top: 20px; margin-top: 26px;
 }
 .dossier__card {
-  background: var(--ink); color: var(--paper); padding: 28px;
+  background: var(--panel); color: var(--panel-ink);
+  border: 1px solid var(--panel-line); padding: 28px;
   position: sticky; top: 90px;
 }
 .dossier__card-title {
   font-family: var(--font-mono); font-size: 0.75rem; text-transform: uppercase;
-  letter-spacing: 0.16em; color: #8d8d84; margin-bottom: 18px;
+  letter-spacing: 0.16em; color: var(--panel-soft); margin-bottom: 18px;
 }
 .ticks { list-style: none; display: flex; flex-direction: column; gap: 14px; }
 .ticks li { position: relative; padding-left: 26px; font-size: 0.98rem; line-height: 1.4; }
@@ -401,7 +412,8 @@ a { color: inherit; text-decoration: none; }
 .disclosure__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 @media (max-width: 820px) { .disclosure__grid { grid-template-columns: 1fr; } }
 .flaw {
-  border: 1px solid var(--ink); padding: 26px 24px; background: var(--paper);
+  border: 1px solid var(--panel-line); padding: 26px 24px; background: var(--panel);
+  color: var(--panel-ink);
   position: relative; display: flex; flex-direction: column; gap: 10px;
 }
 .flaw__tag {
@@ -423,11 +435,11 @@ a { color: inherit; text-decoration: none; }
   letter-spacing: 0.12em; font-weight: 700; line-height: 1;
   padding: 4px 8px; border: 1px solid currentColor; white-space: nowrap;
 }
-.flaw__status--not-started { color: var(--ink-soft); }
+.flaw__status--not-started { color: var(--panel-soft); }
 .flaw__status--in-progress { color: var(--m-blue); }
 .flaw__status--completed   { color: #fff; background: var(--status-done); border-color: var(--status-done); }
 .flaw__title { font-weight: 700; font-size: 1.15rem; line-height: 1.25; }
-.flaw p { color: var(--ink-soft); font-size: 0.98rem; }
+.flaw p { color: var(--panel-soft); font-size: 0.98rem; }
 
 /* ---------- Footer ---------- */
 .site-foot { margin-top: 0; }
