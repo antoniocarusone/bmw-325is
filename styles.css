@@ -139,7 +139,7 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero__title {
-  font-weight: 900; line-height: 0.82; letter-spacing: -0.01em;
+  font-weight: 900; line-height: 0.82; letter-spacing: -0.04em;
   font-stretch: 112%;
   font-size: clamp(5rem, 19vw, 15rem);
   margin: 0 0 4px -0.04em;
@@ -224,13 +224,15 @@ a { color: inherit; text-decoration: none; }
 
 /* diagonal stripe band under hero */
 .stripe-band {
-  /* A single tricolour group, centred — not a repeating band. Percentage stops
-     keep the three bars equal whatever the width, since the 115deg axis is
-     longer than the box. */
+  /* A single tricolour group, centred. The whole element is skewed rather than
+     just the gradient inside it, so the outer edges of the blue and the red run
+     at the same diagonal as the boundaries between the bars — a gradient alone
+     leaves those two ends square. */
   height: 14px; width: 120px; margin: clamp(40px, 6vw, 70px) auto 0;
   background: linear-gradient(
-    115deg,
+    90deg,
     var(--m-blue) 0 33.333%, var(--m-navy) 33.333% 66.666%, var(--m-red) 66.666% 100%);
+  transform: skewX(-25deg);
   opacity: 0.9;
 }
 
@@ -306,7 +308,7 @@ a { color: inherit; text-decoration: none; }
 }
 .section__no::before { content: "▸ "; }
 .section__title {
-  font-weight: 900; font-stretch: 108%; letter-spacing: -0.01em;
+  font-weight: 900; font-stretch: 108%; letter-spacing: -0.03em;
   /* one size for every section title, including the two column headings. The
      ceiling is set by "Modifications" — one unbreakable word whose min-content
      can silently inflate its own track. Its column went from 1.15fr/1fr to a
