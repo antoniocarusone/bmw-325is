@@ -43,6 +43,13 @@ git add -A && git commit -m "Update" && git push
 
 The live site rebuilds about a minute after the push.
 
+**Search engines:** `index.html` carries a `noindex, nofollow` meta tag, so the
+page stays out of Google and other search results. Don't add a `robots.txt` to
+block crawling — this is a *project* page, so `robots.txt` would have to live at
+the domain root (a separate `antoniocarusone.github.io` repo) to be read at all,
+and blocking the crawler would stop it from ever seeing the `noindex` tag.
+Note the GitHub *repo* page is still public and indexable; only the site is not.
+
 ## Tips
 - Keep photos under ~500 KB each (resize to ~2000px wide) so the page loads fast.
 - Alpine White shows reflections — shoot in open shade or golden hour.
