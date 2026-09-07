@@ -42,6 +42,11 @@ git add -A && git commit -m "Update" && git push
 
 The live site rebuilds about a minute after the push.
 
+**When you edit `styles.css`, bump the version in `index.html`:**
+`<link rel="stylesheet" href="styles.css?v=3" />` → `?v=4`. GitHub Pages
+serves CSS with `cache-control: max-age=600`, so without this your browser
+can keep using the old stylesheet for 10 minutes after a push.
+
 **Search engines:** `index.html` carries a `noindex, nofollow` meta tag, so the
 page stays out of Google and other search results. Don't add a `robots.txt` to
 block crawling — this is a *project* page, so `robots.txt` would have to live at
