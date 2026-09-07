@@ -38,13 +38,14 @@
   --maxw: 1240px;
   --pad:  clamp(20px, 5vw, 64px);
 
-  /* M Technic marker: three EQUAL bands on the same diagonal the hero stripe
-     band runs at. Percentage stops keep the thirds equal at any size — the two
-     list markers previously used repeating gradients with pixel stops at 90deg,
-     which drew upright bars, and rounded the third band down to 3px of 11. */
+  /* M Technic marks. The gradient stays square-on and the ELEMENT is skewed —
+     angling the gradient alone tilts the boundaries between bars but leaves the
+     outer edges of the blue and the red vertical. Everything wearing this pairs
+     --m-stripes with --m-skew: the hero band and both list markers. */
   --m-stripes: linear-gradient(
-    115deg,
+    90deg,
     var(--m-blue) 0 33.333%, var(--m-navy) 33.333% 66.666%, var(--m-red) 66.666% 100%);
+  --m-skew: skewX(-25deg);
 
   --font-display: "Helvetica Neue", Arial, sans-serif;
   --font-cond:    "Archivo Narrow", "Helvetica Neue", Arial, sans-serif;
@@ -237,10 +238,8 @@ a { color: inherit; text-decoration: none; }
      at the same diagonal as the boundaries between the bars — a gradient alone
      leaves those two ends square. */
   height: 14px; width: 120px; margin: clamp(40px, 6vw, 70px) auto 0;
-  background: linear-gradient(
-    90deg,
-    var(--m-blue) 0 33.333%, var(--m-navy) 33.333% 66.666%, var(--m-red) 66.666% 100%);
-  transform: skewX(-25deg);
+  background: var(--m-stripes);
+  transform: var(--m-skew);
   opacity: 0.9;
 }
 
@@ -353,8 +352,8 @@ a { color: inherit; text-decoration: none; }
 .ticks { list-style: none; display: flex; flex-direction: column; gap: 14px; }
 .ticks li { position: relative; padding-left: 26px; font-size: 0.98rem; line-height: 1.4; }
 .ticks li::before {
-  content: ""; position: absolute; left: 0; top: 6px; width: 12px; height: 12px;
-  background: var(--m-stripes);
+  content: ""; position: absolute; left: 3px; top: 6px; width: 12px; height: 12px;
+  background: var(--m-stripes); transform: var(--m-skew);
 }
 
 /* ---------- Specs table ---------- */
@@ -406,8 +405,8 @@ a { color: inherit; text-decoration: none; }
   position: relative; padding-left: 22px;
 }
 .log__what::before {
-  content: ""; position: absolute; left: 0; top: 0.45em; width: 12px; height: 12px;
-  background: var(--m-stripes);
+  content: ""; position: absolute; left: 3px; top: 0.45em; width: 12px; height: 12px;
+  background: var(--m-stripes); transform: var(--m-skew);
 }
 .log__detail { color: var(--ink-soft); margin-top: 6px; font-size: 0.98rem; max-width: 70ch; padding-left: 22px; }
 /* Optional date line. Sits above the heading, aligned past the tricolour marker.
