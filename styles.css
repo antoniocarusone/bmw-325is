@@ -38,6 +38,14 @@
   --maxw: 1240px;
   --pad:  clamp(20px, 5vw, 64px);
 
+  /* M Technic marker: three EQUAL bands on the same diagonal the hero stripe
+     band runs at. Percentage stops keep the thirds equal at any size — the two
+     list markers previously used repeating gradients with pixel stops at 90deg,
+     which drew upright bars, and rounded the third band down to 3px of 11. */
+  --m-stripes: linear-gradient(
+    115deg,
+    var(--m-blue) 0 33.333%, var(--m-navy) 33.333% 66.666%, var(--m-red) 66.666% 100%);
+
   --font-display: "Helvetica Neue", Arial, sans-serif;
   --font-cond:    "Archivo Narrow", "Helvetica Neue", Arial, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, monospace;
@@ -346,7 +354,7 @@ a { color: inherit; text-decoration: none; }
 .ticks li { position: relative; padding-left: 26px; font-size: 0.98rem; line-height: 1.4; }
 .ticks li::before {
   content: ""; position: absolute; left: 0; top: 6px; width: 12px; height: 12px;
-  background: repeating-linear-gradient(90deg, var(--m-blue) 0 4px, var(--m-navy) 4px 8px, var(--m-red) 8px 12px);
+  background: var(--m-stripes);
 }
 
 /* ---------- Specs table ---------- */
@@ -398,8 +406,8 @@ a { color: inherit; text-decoration: none; }
   position: relative; padding-left: 22px;
 }
 .log__what::before {
-  content: ""; position: absolute; left: 0; top: 0.5em; width: 11px; height: 11px;
-  background: repeating-linear-gradient(90deg, var(--m-blue) 0 4px, var(--m-navy) 4px 8px, var(--m-red) 8px 11px);
+  content: ""; position: absolute; left: 0; top: 0.45em; width: 12px; height: 12px;
+  background: var(--m-stripes);
 }
 .log__detail { color: var(--ink-soft); margin-top: 6px; font-size: 0.98rem; max-width: 70ch; padding-left: 22px; }
 /* Optional date line. Sits above the heading, aligned past the tricolour marker.
