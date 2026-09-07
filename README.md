@@ -27,8 +27,8 @@ copy-paste template in an HTML comment right above the list. Duplicate one
 detail. `data-mileage` is optional and shows on the right.
 
 ## 3. Edit any text
-All copy is plain text in `index.html` — contact email, location,
-known issues, the story. Search for what you want to change.
+All copy is plain text in `index.html` — specs, known issues, the story.
+Search for what you want to change.
 
 ## 4. Publish
 This site is hosted free on **GitHub Pages** at

@@ -122,27 +122,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft") step(-1);
 });
 
-/* ---------- spam-safe email reveal ----------
-   The address is never written in the page source as plain text;
-   it's assembled from data-* parts only when a human clicks. */
-const revealBtn = document.getElementById("revealEmail");
-if (revealBtn) {
-  revealBtn.addEventListener("click", () => {
-    const user = revealBtn.dataset.user;
-    const domain = revealBtn.dataset.domain;
-    const addr = user + "@" + domain;
-    const subject = encodeURIComponent("Klaus — 1990 BMW 325is");
-    const body = encodeURIComponent("Hi, I have a question about Klaus. ");
-    const a = document.createElement("a");
-    a.className = "contact__email";
-    a.href = `mailto:${addr}?subject=${subject}&body=${body}`;
-    a.textContent = addr;
-    revealBtn.replaceWith(a);
-    const hint = document.getElementById("emailHint");
-    if (hint) hint.textContent = "Click the address to open your mail app.";
-  });
-}
-
 /* ---------- scroll reveals ---------- */
 const io = new IntersectionObserver((entries) => {
   entries.forEach((e) => {

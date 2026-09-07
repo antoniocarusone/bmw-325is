@@ -88,13 +88,15 @@ a { color: inherit; text-decoration: none; }
   transition: color .2s;
 }
 .site-head__nav a:hover { color: var(--ink); }
-.site-head__cta {
-  color: #fff !important; background: var(--ink);
-  padding: 7px 14px; letter-spacing: 0.12em !important;
-}
-.site-head__cta:hover { background: var(--m-red); }
 @media (max-width: 820px) {
-  .site-head__nav a:not(.site-head__cta) { display: none; }
+  .site-head__nav {
+    gap: 14px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    /* fade the right edge so the overflow reads as scrollable, not clipped */
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 22px), transparent);
+            mask-image: linear-gradient(to right, #000 calc(100% - 22px), transparent);
+  }
+  .site-head__nav::-webkit-scrollbar { display: none; }
+  .site-head__nav a { font-size: 0.64rem; letter-spacing: 0.07em; white-space: nowrap; }
 }
 
 /* ---------- Hero ---------- */
@@ -356,30 +358,6 @@ a { color: inherit; text-decoration: none; }
 .flaw--good .flaw__tag { background: var(--m-blue); }
 .flaw__title { font-weight: 700; font-size: 1.15rem; line-height: 1.25; }
 .flaw p { color: var(--ink-soft); font-size: 0.98rem; }
-
-/* ---------- Covenant ---------- */
-.covenant { background: var(--ink); color: var(--paper); padding: clamp(56px, 9vw, 120px) var(--pad); }
-.covenant__inner { max-width: 820px; margin-inline: auto; text-align: center; }
-.covenant__eyebrow {
-  font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase;
-  letter-spacing: 0.18em; color: var(--m-red); margin-bottom: 22px;
-}
-.covenant__text { font-size: clamp(1.4rem, 3.4vw, 2.2rem); line-height: 1.35; font-weight: 500; }
-.covenant__text em { font-style: normal; color: var(--m-blue); }
-
-/* ---------- Contact ---------- */
-.contact__card {
-  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
-  gap: 30px; border: 1.5px solid var(--ink); padding: clamp(26px, 5vw, 48px);
-}
-.contact__actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
-.contact__line { font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink-soft); letter-spacing: 0.04em; }
-.contact__line--muted { opacity: 0.7; }
-.contact__email {
-  font-family: var(--font-mono); font-weight: 700; font-size: 0.92rem;
-  color: var(--ink); letter-spacing: 0.02em; border-bottom: 2px solid var(--m-red);
-}
-.contact__email:hover { color: var(--m-red); }
 
 /* ---------- Footer ---------- */
 .site-foot { margin-top: 0; }
