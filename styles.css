@@ -16,6 +16,9 @@
   --m-navy:   #15264f;   /* dark blue */
   --m-red:    #e2231a;   /* motorsport red */
 
+  /* status colour, outside the Motorsport palette — Known Issues badges only */
+  --status-done: #15703c;
+
   --maxw: 1240px;
   --pad:  clamp(20px, 5vw, 64px);
 
@@ -360,7 +363,7 @@ a { color: inherit; text-decoration: none; }
 }
 .flaw__status--not-started { color: var(--ink-soft); }
 .flaw__status--in-progress { color: var(--m-blue); }
-.flaw__status--completed   { color: #fff; background: var(--m-navy); border-color: var(--m-navy); }
+.flaw__status--completed   { color: #fff; background: var(--status-done); border-color: var(--status-done); }
 .flaw__title { font-weight: 700; font-size: 1.15rem; line-height: 1.25; }
 .flaw p { color: var(--ink-soft); font-size: 0.98rem; }
 
