@@ -2,13 +2,8 @@
    DIETER — interactions
    ============================================================ */
 
-/* ---------- always open at the top ----------
-   Two things put the page partway down on load: the browser restores the previous
-   scroll position on reload, and a leftover #service in the URL from clicking the
-   nav does the same. Neither is wanted here — the page should always open at the
-   masthead. In-page nav links still work; they scroll without reloading. */
-if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-window.scrollTo({ top: 0, behavior: "instant" });
+/* Never restore the previous scroll position on reload — open at the top. */
+history.scrollRestoration = "manual";
 
 /* ---------- graceful fallback for any missing image ---------- */
 window.__photoFallback = function (img) {
