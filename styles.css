@@ -37,7 +37,7 @@
 
   /* Aspect ratio of the photo band at the top of main — change this one value
      to reshape it. */
-  --hero-ratio: 16 / 9;
+  --hero-ratio: 21 / 9;
 
   --maxw: 1240px;
   --pad:  clamp(20px, 5vw, 64px);
