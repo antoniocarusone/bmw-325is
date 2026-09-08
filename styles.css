@@ -96,8 +96,11 @@ a { color: inherit; text-decoration: none; }
 }
 .site-head__mark { display: flex; align-items: center; gap: 12px; }
 .site-head__name {
-  font-weight: 900; font-size: 1.25rem; letter-spacing: 0.14em;
-  font-stretch: 75%;
+  /* No font-stretch: 75% here. The family was always Helvetica Neue, but that
+     stretch pulled in the Condensed cut on macOS, which read as a different face
+     from the rest of the page. Plain width, and tracking pulled in to suit title
+     case — 0.14em is spacing meant for all-caps. */
+  font-weight: 900; font-size: 1.25rem; letter-spacing: -0.01em;
 }
 
 /* mini roundel */
