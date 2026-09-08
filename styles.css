@@ -35,6 +35,10 @@
      columns on this gutter, so their column edges line up down the page. */
   --col-gap: clamp(28px, 5vw, 60px);
 
+  /* Aspect ratio of the photo band at the top of main — change this one value
+     to reshape it. */
+  --hero-ratio: 16 / 9;
+
   --maxw: 1240px;
   --pad:  clamp(20px, 5vw, 64px);
 
@@ -126,6 +130,20 @@ a { color: inherit; text-decoration: none; }
   .site-head__nav::-webkit-scrollbar { display: none; }
   .site-head__nav a { font-size: 0.64rem; letter-spacing: 0.07em; white-space: nowrap; }
 }
+
+/* ---------- Photo band ----------
+   Sits on the same content edges as every section below it, so its sides line up
+   with the Dossier text and the Service History column. */
+.hero-img {
+  max-width: var(--maxw); margin-inline: auto;
+  padding: clamp(20px, 3vw, 36px) var(--pad) 0;
+}
+.hero-img__frame {
+  aspect-ratio: var(--hero-ratio);
+  background: var(--panel-line);   /* placeholder fill */
+  overflow: hidden;
+}
+.hero-img__frame img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- Hero ---------- */
 .hero { position: relative; padding: clamp(36px, 7vw, 84px) var(--pad) 0; max-width: var(--maxw); margin-inline: auto; }
