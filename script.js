@@ -75,17 +75,14 @@ document.querySelectorAll(".maint").forEach((el) => {
   const sub = el.querySelector(".maint__sub");
   const slot = el.querySelector(".maint__status");
 
-  /* A top-up is not a service — it corrects the level without renewing the fluid,
-     so it is worth recording but must not reset the interval. */
-  const topped = d.toppedOn
-    ? " · topped up " + new Date(d.toppedOn + "T00:00:00")
-        .toLocaleDateString("en-US", { month: "short", year: "numeric" })
-    : "";
+  /* data-note records something that is not a service — a top-up, an inspection —
+     so it is shown but must never reset the interval. */
+  const note = d.note ? " · " + d.note : "";
 
   if (!limits.length) {
     el.classList.add("maint--unknown");
     slot.textContent = "No record";
-    sub.textContent = sub.textContent + " · every " + every + topped;
+    sub.textContent = sub.textContent + " · every " + every + note;
     return;
   }
 
@@ -109,7 +106,7 @@ document.querySelectorAll(".maint").forEach((el) => {
   sub.textContent = sub.textContent + " · every " + every
     + (detail ? " · " + detail : "")
     + (unchecked.length ? " · " + unchecked.join(" & ") + " unknown" : "")
-    + topped;
+    + note;
 });
 
 /* ---------- animated odometer on load ---------- */

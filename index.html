@@ -113,7 +113,8 @@
        Whichever limit falls first wins; script.js works that out against ODOMETER
        and today's date, and shows the more urgent of the two.
        To log a service, edit that item's data-last-mi / data-last-on. An item with
-       neither reads "No record". -->
+       neither reads "No record". data-note adds a remark — a top-up, an inspection —
+       that is shown but never resets the interval. -->
   <section class="vitals" aria-label="Maintenance tracker">
     <div class="vitals__head">
       <p class="vitals__title">Maintenance</p>
@@ -123,7 +124,10 @@
       <!-- Dated from the rebuild rather than the last logged oil change: new bearings,
            rings and a rebuilt oil pump cannot go back together on the old oil. The
            last recorded change before this was 11/29/21 @ 193,772. -->
-      <li class="maint" data-last-mi="195514" data-last-on="2023-04-01" data-every-mi="6000" data-every-months="6">
+      <!-- Sep 2026: the Bimmers Only tech checked it and said it still looked good,
+           which suggests a change more recent than this record — but with no date or
+           mileage for it, the clock stays on the rebuild. Noted, not reset. -->
+      <li class="maint" data-last-mi="195514" data-last-on="2023-04-01" data-every-mi="6000" data-every-months="6" data-note="checked Sep 2026, looked good">
         <span class="maint__k">Engine oil</span>
         <span class="maint__status">&mdash;</span>
         <span class="maint__sub">195,514 mi &middot; with the Apr 2023 rebuild</span>
@@ -133,10 +137,12 @@
         <span class="maint__status">&mdash;</span>
         <span class="maint__sub">195,514 mi &middot; Apr 2023 rebuild</span>
       </li>
-      <li class="maint" data-last-mi="184457" data-last-on="2019-08-30" data-every-mi="25000" data-every-months="24">
+      <!-- Drained and refilled at Bimmers Only, Sep 2026. No mileage yet — the invoice
+           will have it; add it as data-last-mi. Month-only, so dated the 1st. -->
+      <li class="maint" data-last-on="2026-09-01" data-every-mi="25000" data-every-months="24">
         <span class="maint__k">Transmission oil</span>
         <span class="maint__status">&mdash;</span>
-        <span class="maint__sub">184,457 mi &middot; Aug 2019</span>
+        <span class="maint__sub">Sep 2026 &middot; Bimmers Only</span>
       </li>
       <li class="maint" data-last-mi="198403" data-last-on="2024-11-24" data-every-mi="25000" data-every-months="24">
         <span class="maint__k">Air filter</span>
@@ -158,9 +164,9 @@
         <span class="maint__status">&mdash;</span>
         <span class="maint__sub">Dec 2018 &middot; assumed, with the bleed</span>
       </li>
-      <!-- data-topped-on records a top-up, which is not a change: it does not reset
-           the 24-month replacement clock, it just notes that the level was corrected. -->
-      <li class="maint" data-every-months="24" data-topped-on="2026-09-05">
+      <!-- The top-up is a data-note, not a change: it does not reset the 24-month
+           replacement clock, it just records that the level was corrected. -->
+      <li class="maint" data-every-months="24" data-note="topped up Sep 2026">
         <span class="maint__k">Coolant</span>
         <span class="maint__status">&mdash;</span>
         <span class="maint__sub">Never changed on record</span>
@@ -246,6 +252,38 @@
       </div>
 
       <ol class="log log--service" id="serviceLog">
+        <li class="log__item">
+          <div class="log__main">
+            <p class="log__when">Sep 2026</p>
+            <h3 class="log__what">Drivetrain mounting</h3>
+            <p class="log__detail">Transmission secured to its studs, and the driveshaft center bearing — found hanging by one stud — remounted; together they caused the grinding and vibration. Rear shifter support remounted. (Bimmers Only)</p>
+          </div>
+        </li>
+
+        <li class="log__item">
+          <div class="log__main">
+            <p class="log__when">Sep 2026</p>
+            <h3 class="log__what">Transmission seals &amp; oil</h3>
+            <p class="log__detail">Sector shaft seal and rear output seal replaced; both were leaking. Drained and refilled with new oil. (Bimmers Only)</p>
+          </div>
+        </li>
+
+        <li class="log__item">
+          <div class="log__main">
+            <p class="log__when">Sep 2026</p>
+            <h3 class="log__what">Exhaust</h3>
+            <p class="log__detail">Leak fixed and fit corrected: pipes heated and bent to align, center mount refabricated, rubber hanger fitted. (Bimmers Only)</p>
+          </div>
+        </li>
+
+        <li class="log__item">
+          <div class="log__main">
+            <p class="log__when">Sep 2026</p>
+            <h3 class="log__what">Hood release cable</h3>
+            <p class="log__detail">Disassembled and adjusted. (Bimmers Only)</p>
+          </div>
+        </li>
+
         <li class="log__item">
           <div class="log__main">
             <p class="log__when">Nov 24, 2024 · 198,403 mi</p>
@@ -532,16 +570,16 @@
         <p>Aftermarket clip fitted; the lighter mounts properly again.</p>
       </article>
       <article class="flaw">
-        <span class="flaw__status flaw__status--in-progress">In progress</span>
+        <span class="flaw__status flaw__status--completed">Completed</span>
         <span class="flaw__tag">Drivetrain</span>
         <h3 class="flaw__title">Drivetrain grinding and vibration</h3>
-        <p>Grinding under acceleration; vibration in 2nd gear at 2,000 rpm. At Bimmers Only for repair.</p>
+        <p>Caused by the driveshaft center bearing hanging by one stud and the transmission not fully secured to its studs. Both remounted at Bimmers Only.</p>
       </article>
       <article class="flaw">
         <span class="flaw__status flaw__status--in-progress">In progress</span>
         <span class="flaw__tag">Steering</span>
         <h3 class="flaw__title">Power steering — slow leak</h3>
-        <p>Loses fluid slowly. At Bimmers Only for repair.</p>
+        <p>A leaking seal at the top of the steering rack. No replacement seal is made, so the next step is Lucas Oil Power Steering Stop Leak.</p>
       </article>
       <article class="flaw">
         <span class="flaw__status flaw__status--not-started">Not started</span>
@@ -592,6 +630,6 @@
   </div>
 </footer>
 
-<script src="script.js?v=12"></script>
+<script src="script.js?v=13"></script>
 </body>
 </html>
