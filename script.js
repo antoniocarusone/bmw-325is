@@ -23,7 +23,7 @@ document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
    Current mileage. Single source of truth — the hero counter and
    the maintenance tracker both read it. Update it here.
    ============================================================ */
-const ODOMETER = 201025;
+const ODOMETER = 201043;
 
 /* ---------- maintenance tracker ----------
    Every item can carry a mileage limit and a time limit. BMW quotes these as
