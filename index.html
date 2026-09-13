@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=30" />
+<link rel="stylesheet" href="styles.css?v=31" />
 </head>
 <body>
 
@@ -652,6 +652,12 @@
         <h3 class="flaw__title">Paint — clear coat</h3>
         <p>The front passenger corner of the hood has a small area where the clear coat has come off.</p>
       </article>
+
+      <!-- Empty frames so the last row of the 3-wide grid is not left short. They
+           hold no issue. Keep (real cards + fillers) a multiple of 3: add an issue,
+           remove a filler. They drop out once the grid is a single column. -->
+      <article class="flaw flaw--empty" aria-hidden="true"></article>
+      <article class="flaw flaw--empty" aria-hidden="true"></article>
     </div>
   </section>
 
